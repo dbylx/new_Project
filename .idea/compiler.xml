@@ -6,11 +6,11 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="db" />
-        <module name="ManageSystem" />
         <module name="MVCProject_Bean" />
-        <module name="HomeworkManage" />
         <module name="MVCProject" />
+        <module name="ManageSystem" />
+        <module name="db" />
+        <module name="HomeworkManage" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>

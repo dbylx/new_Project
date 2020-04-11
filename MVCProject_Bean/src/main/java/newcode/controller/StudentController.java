@@ -1,8 +1,9 @@
 package newcode.controller;
 
-import newcode.entity.StudentHomework;
+import newcode.model.StudentHomework;
 import newcode.jdbc.StudentJDBC;
 import newcode.jdbc.TeacherJDBC;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,12 +18,20 @@ import java.util.ArrayList;
 @Controller
 @RequestMapping("/student")
 public class StudentController {
+    private TeacherJDBC teacherJDBC;
+    private StudentJDBC studentJDBC;
+
+    @Autowired
+    public StudentController(TeacherJDBC teacherJDBC, StudentJDBC studentJDBC) {
+        this.teacherJDBC = teacherJDBC;
+        this.studentJDBC = studentJDBC;
+    }
+
+
     @RequestMapping("/choose")
     protected String choose1(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         System.out.println("I do this");
-        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(TeacherJDBC.class);
-        TeacherJDBC teacherJDBC = context.getBean("teacherJDBC", TeacherJDBC.class);
 
 
         ArrayList<StudentHomework> list = teacherJDBC.queryHomework();
@@ -34,8 +43,6 @@ public class StudentController {
 
     @RequestMapping("/dealSubmitHomework")
     public String submitHomework(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(TeacherJDBC.class);
-        TeacherJDBC teacherJDBC = context.getBean("teacherJDBC", TeacherJDBC.class);
 
         ArrayList<StudentHomework> list = teacherJDBC.queryHomework();
         String title = list.get(Integer.valueOf(req.getParameter("param"))).getHomeworkTitle();
@@ -53,7 +60,7 @@ public class StudentController {
 
     @RequestMapping("/FinallyHomework")
     public void submitFinallHomework(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        StudentJDBC studentJDBC = new StudentJDBC();
+
 
         String username = (String) req.getSession().getAttribute("username1");
         String title = (String) req.getSession().getAttribute("title");

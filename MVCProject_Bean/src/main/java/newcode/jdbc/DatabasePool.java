@@ -3,8 +3,9 @@ package newcode.jdbc;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 import org.springframework.beans.factory.annotation.Configurable;
+import org.springframework.stereotype.Component;
 
-
+@Component
 public class DatabasePool {
     private static HikariDataSource hikariDataSource;
 

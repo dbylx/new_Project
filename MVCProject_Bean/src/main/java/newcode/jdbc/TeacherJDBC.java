@@ -1,29 +1,25 @@
 package newcode.jdbc;
 
-import newcode.entity.StudentHomework;
-import org.springframework.beans.factory.annotation.Configurable;
+import newcode.model.StudentHomework;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.stereotype.Component;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-@Configuration
+@Component
 public class TeacherJDBC {
-
-    public TeacherJDBC(){
-
+    private JDBCControll jdbcControll;
+    public TeacherJDBC(JDBCControll jdbcControll){
+        this.jdbcControll = jdbcControll;
     }
 
     public ArrayList<StudentHomework> queryHomework(){
-        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("classpath:applicationContext.xml");
-        JDBCControll jdbcControll = applicationContext.getBean("JDBCControll",JDBCControll.class);
         ArrayList<StudentHomework> homeworkList = new ArrayList<StudentHomework>();
         try {
-            jdbcControll = new JDBCControll();
+//            jdbcControll = new JDBCControll();
             String sqlString = "select * from s_homework";
 
             jdbcControll.excuteSQL(sqlString);
@@ -44,11 +40,9 @@ public class TeacherJDBC {
 
 
     public ArrayList<StudentHomework> queryDetailHomework(String title){
-        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("classpath:applicationContext.xml");
-        JDBCControll jdbcControll = applicationContext.getBean("JDBCControll",JDBCControll.class);
         ArrayList<StudentHomework> homeworkList = new ArrayList<StudentHomework>();
         try {
-            jdbcControll = new JDBCControll();
+//            jdbcControll = new JDBCControll();
             String sqlString = "select * from s_student_homework Where homework_title = '"+title+"'";
 
             jdbcControll.excuteSQL(sqlString);
@@ -70,8 +64,6 @@ public class TeacherJDBC {
 
 
     public Boolean addHomework(String title,String content){
-        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("classpath:applicationContext.xml");
-        JDBCControll jdbcControll = applicationContext.getBean("JDBCControll",JDBCControll.class);
         try {
             String sqlString = "INSERT INTO school.s_homework(title, content) VALUES ('" + title + "','"  + content + "')";
             return jdbcControll.excuteUpdateSQL(sqlString);
@@ -84,11 +76,7 @@ public class TeacherJDBC {
     }
 
     public Boolean getTeacherIdentity(String teacherName,String passWord){
-        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("classpath:applicationContext.xml");
-        JDBCControll jdbcControll = applicationContext.getBean("JDBCControll",JDBCControll.class);
-
-
-        try {
+       try {
             String sqlString = "select * from s_teacher WHERE username = '"+teacherName+"'";
 
             jdbcControll.excuteSQL(sqlString);
@@ -110,21 +98,21 @@ public class TeacherJDBC {
         return false;
     }
 
-    public static void main(String[] args){
-        TeacherJDBC teacherJDBC = new TeacherJDBC();
-        ArrayList<StudentHomework> homeworkList =teacherJDBC.queryDetailHomework("homework1");
-        for(int i = 0 ;i<homeworkList.size();i++){
-            s(homeworkList.get(i).getUsername());
-            s(homeworkList.get(i).getHomeworkTitle());
-            s(homeworkList.get(i).getHomeworkContent());
-            s(homeworkList.get(i).getCreateTime());
-        }
-
-    }
-
-    public static void s(Object s){
-        System.out.println(s);
-    }
+//    public static void main(String[] args){
+//        TeacherJDBC teacherJDBC = new TeacherJDBC();
+//        ArrayList<StudentHomework> homeworkList =teacherJDBC.queryDetailHomework("homework1");
+//        for(int i = 0 ;i<homeworkList.size();i++){
+//            s(homeworkList.get(i).getUsername());
+//            s(homeworkList.get(i).getHomeworkTitle());
+//            s(homeworkList.get(i).getHomeworkContent());
+//            s(homeworkList.get(i).getCreateTime());
+//        }
+//
+//    }
+//
+//    public static void s(Object s){
+//        System.out.println(s);
+//    }
 
 }
 

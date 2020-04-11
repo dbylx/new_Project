@@ -1,5 +1,6 @@
 package newcode.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 
 
@@ -19,6 +20,18 @@ import java.io.IOException;
 
 @Controller
 public class DealLoginController extends HttpServlet {
+
+
+    private TeacherJDBC teacherJDBC;
+    private StudentJDBC studentJDBC;
+
+    @Autowired
+    public DealLoginController(TeacherJDBC teacherJDBC,StudentJDBC studentJDBC) {
+        this.studentJDBC = studentJDBC;
+        this.teacherJDBC = teacherJDBC;
+    }
+
+
     @RequestMapping(value = "/dealLogin")
     public String DealLogin(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
@@ -27,11 +40,6 @@ public class DealLoginController extends HttpServlet {
         String password =req.getParameter("mypwd");
         System.out.println(new String(req.getParameter("mypwd") .getBytes("iso8859-1"),"utf-8"));
 
-        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(TeacherJDBC.class);
-        TeacherJDBC teacherJDBC = context.getBean("teacherJDBC", TeacherJDBC.class);
-
-        AnnotationConfigApplicationContext context2 = new AnnotationConfigApplicationContext(StudentJDBC.class);
-        StudentJDBC studentJDBC = context2.getBean("studentJDBC", StudentJDBC.class);
 
         if(teacherJDBC.getTeacherIdentity(userName,password)){
             System.out.println("teacher");

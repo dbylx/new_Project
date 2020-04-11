@@ -1,4 +1,4 @@
-package newcode.entity;
+package newcode.model;
 
 public class Teacher {
     String tName;

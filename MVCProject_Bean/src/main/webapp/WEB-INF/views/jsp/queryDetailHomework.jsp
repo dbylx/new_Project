@@ -3,7 +3,7 @@
 <%@ page import="java.util.List" %>
 
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="newcode.entity.StudentHomework" %>
+<%@ page import="newcode.model.StudentHomework" %>
 <%
 	ArrayList<StudentHomework> home_list = (ArrayList<StudentHomework>) request.getAttribute("detalList");
 	if(home_list == null){

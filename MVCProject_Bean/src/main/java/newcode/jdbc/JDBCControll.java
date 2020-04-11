@@ -1,14 +1,31 @@
 package newcode.jdbc;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.stereotype.Component;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+@Component
 public class JDBCControll {
+    private Connection connection;
+    private Statement statment;
+    private ResultSet resultSet;
+    private DatabasePool databasePool;
+
+
+    @Autowired
+    public JDBCControll(DatabasePool databasePool){
+        this.databasePool = databasePool;
+    }
+
+
+
+
     public void setStatment(Statement statment) {
         this.statment = statment;
     }
@@ -16,10 +33,6 @@ public class JDBCControll {
     public void setResultSet(ResultSet resultSet) {
         this.resultSet = resultSet;
     }
-
-    private Connection connection;
-    private Statement statment;
-    private ResultSet resultSet;
 
     public Connection getConnection() {
         return connection;
@@ -53,8 +66,6 @@ public class JDBCControll {
 //        return null;
         //改为数据库连接池后的连接方法
         try {
-            ApplicationContext applicationContext = new ClassPathXmlApplicationContext("classpath:applicationContext.xml");
-            DatabasePool databasePool = applicationContext.getBean("DatabasePool",DatabasePool.class);
             connection = databasePool.getHikariDataSource().getConnection();
             statment = connection.createStatement();
             System.out.println("yes succcessful");
