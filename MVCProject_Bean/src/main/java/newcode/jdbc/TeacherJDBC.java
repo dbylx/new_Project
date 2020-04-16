@@ -1,17 +1,18 @@
 package newcode.jdbc;
 
+import newcode.Dao.TeacherDao;
 import newcode.model.StudentHomework;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.stereotype.Component;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.stereotype.Repository;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-@Component
-public class TeacherJDBC {
+@Repository
+public class TeacherJDBC implements TeacherDao {
     private JDBCControll jdbcControll;
+    @Autowired
     public TeacherJDBC(JDBCControll jdbcControll){
         this.jdbcControll = jdbcControll;
     }

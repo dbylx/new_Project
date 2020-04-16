@@ -8,9 +8,9 @@
         <outputRelativeToContentRoot value="true" />
         <module name="MVCProject_Bean" />
         <module name="MVCProject" />
-        <module name="ManageSystem" />
         <module name="db" />
         <module name="HomeworkManage" />
+        <module name="ManageSystem" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
