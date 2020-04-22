@@ -2,7 +2,7 @@
 <!--http://faculty.csu.edu.cn/xjp/zh_CN/index.htm-->
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="newcode.model.StudentHomework" %>
+<%@ page import="org.com.code.model.StudentHomework" %>
 <%
 	ArrayList<StudentHomework> home_list = (ArrayList<StudentHomework>) request.getAttribute("homeWorkList");
 	if(home_list == null){

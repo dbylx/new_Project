@@ -1,4 +1,4 @@
-package newcode.model;
+package org.com.code.model;
 
 import java.util.Date;
 

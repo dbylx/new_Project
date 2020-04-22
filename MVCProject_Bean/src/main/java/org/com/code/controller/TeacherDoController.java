@@ -1,10 +1,9 @@
-package newcode.controller;
+package org.com.code.controller;
 
-import newcode.model.StudentHomework;
-import newcode.jdbc.StudentJDBC;
-import newcode.jdbc.TeacherJDBC;
+import org.com.code.model.StudentHomework;
+import org.com.code.servers.StudentJDBC;
+import org.com.code.servers.TeacherJDBC;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -13,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 @Controller
@@ -47,7 +47,7 @@ public class TeacherDoController {
 
 
     @RequestMapping("/dealQueryHomework")
-    public String dealQueryHomework(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    public String dealQueryHomework(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException, SQLException {
         ArrayList<StudentHomework> list = teacherJDBC.queryHomework();
         String title = list.get(Integer.valueOf(req.getParameter("param"))).getHomeworkTitle();
         ArrayList<StudentHomework> detalList = teacherJDBC.queryDetailHomework(title);
@@ -57,7 +57,7 @@ public class TeacherDoController {
     }
 
     @RequestMapping("/dealAddHomework")
-    public void dealAddHomework(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    public void dealAddHomework(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException, SQLException {
        boolean flag = teacherJDBC.addHomework(req.getParameter("title"),req.getParameter("content"));
         PrintWriter out = resp.getWriter();
         if(flag){

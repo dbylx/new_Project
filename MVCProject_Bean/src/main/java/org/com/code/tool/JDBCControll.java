@@ -1,15 +1,15 @@
-package newcode.jdbc;
+package org.com.code.tool;
 
+import org.com.code.tool.DatabasePool;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-@Component
+@Service
 public class JDBCControll {
     private Connection connection;
     private Statement statment;
@@ -20,6 +20,7 @@ public class JDBCControll {
     @Autowired
     public JDBCControll(DatabasePool databasePool){
         this.databasePool = databasePool;
+
     }
 
 
@@ -49,8 +50,8 @@ public class JDBCControll {
 
     public  String ConnectMysql(){
         //原始连接方法
-//        String url = "jdbc:mysql://127.0.0.1:3306/school?serverTimezone=UTC";
-//        String driveName = "com.mysql.cj.jdbc.Driver";
+//        String url = "servers:mysql://127.0.0.1:3306/school?serverTimezone=UTC";
+//        String driveName = "com.mysql.cj.servers.Driver";
 //
 //        try{
 //            Class.forName(driveName);
@@ -75,30 +76,22 @@ public class JDBCControll {
         return null;
     }
 
-    public ResultSet excuteSQL(String sqlString){
-        ConnectMysql();
-        try {
-            resultSet = statment.executeQuery(sqlString);
-            return resultSet;
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+    public ResultSet excuteSQL(String sqlString) throws SQLException {
+//        ConnectMysql();
+        resultSet = statment.executeQuery(sqlString);
+        return resultSet;
 
-        return null;
 
     }
 
-    public boolean excuteUpdateSQL(String sqlString){
-        ConnectMysql();
-        try {
-            boolean flag =  statment.execute(sqlString);
+    public boolean excuteUpdateSQL(String sqlString) throws SQLException {
+//      ConnectMysql();
 
-            return true;
+        boolean flag =  statment.execute(sqlString);
 
-        } catch (SQLException e) {
-            e.printStackTrace();
-           return false;
-        }
+        return true;
+
+
 
     }
 

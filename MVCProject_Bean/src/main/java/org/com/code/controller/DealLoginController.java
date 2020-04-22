@@ -1,14 +1,10 @@
-package newcode.controller;
+package org.com.code.controller;
 
+import org.com.code.servers.StudentJDBC;
+import org.com.code.servers.TeacherJDBC;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.ComponentScan;
 
 
-
-import newcode.jdbc.JDBCControll;
-import newcode.jdbc.StudentJDBC;
-import newcode.jdbc.TeacherJDBC;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -17,6 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.SQLException;
 
 @Controller
 public class DealLoginController extends HttpServlet {
@@ -33,7 +30,7 @@ public class DealLoginController extends HttpServlet {
 
 
     @RequestMapping(value = "/dealLogin")
-    public String DealLogin(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    public String DealLogin(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException, SQLException {
 
         String userName = req.getParameter("myname");
         System.out.println(new String(req.getParameter("myname") .getBytes("utf-8"),"utf-8"));

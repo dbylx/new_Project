@@ -1,13 +1,15 @@
-package newcode.jdbc;
+package org.com.code.servers;
 
-import newcode.Dao.StudentDao;
+import org.com.code.tool.JDBCControll;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
 import java.sql.SQLException;
-@Repository
-public class StudentJDBC implements StudentDao {
+
+
+@Service
+
+public class StudentJDBC{
 
     private JDBCControll jdbcControll;
     @Autowired
@@ -25,7 +27,7 @@ public class StudentJDBC implements StudentDao {
             e.printStackTrace();
             return false;
         } finally {
-            jdbcControll.closeMysql();
+//            jdbcControll.closeMysql();
         }
     }
 
@@ -37,7 +39,7 @@ public class StudentJDBC implements StudentDao {
             e.printStackTrace();
             return false;
         } finally {
-            jdbcControll.closeMysql();
+//            jdbcControll.closeMysql();
         }
     }
 
@@ -60,7 +62,7 @@ public class StudentJDBC implements StudentDao {
         } catch (SQLException e) {
             e.printStackTrace();
         }finally {
-            jdbcControll.closeMysql();
+//            jdbcControll.closeMysql();
         }
 
 

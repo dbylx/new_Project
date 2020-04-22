@@ -4,10 +4,11 @@
        xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
-  <context:component-scan base-package="newcode.controller"/>
-  <context:component-scan base-package="newcode.jdbc"/>
 
-<!--  <bean id="DatabasePool" class="newcode.jdbc.DatabasePool" scope="singleton"></bean>-->
-<!--  <bean id="JDBCControll" class="newcode.jdbc.JDBCControll" scope="singleton"></bean>-->
+
+
+
+<!--  <bean id="DatabasePool" class="newcode.serversers.DatabasePool" scope="singleton"></bean>-->
+<!--  <bean id="JDBCControll" class="newcode.serversers.JDBCControll" scope="singleton"></bean>-->
 <!--  更新为注解形式运行bean-->
 </beans>

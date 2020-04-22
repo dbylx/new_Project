@@ -1,10 +1,9 @@
-package newcode.controller;
+package org.com.code.controller;
 
-import newcode.model.StudentHomework;
-import newcode.jdbc.StudentJDBC;
-import newcode.jdbc.TeacherJDBC;
+import org.com.code.model.StudentHomework;
+import org.com.code.servers.StudentJDBC;
+import org.com.code.servers.TeacherJDBC;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -13,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 @Controller
@@ -29,7 +29,7 @@ public class StudentController {
 
 
     @RequestMapping("/choose")
-    protected String choose1(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected String choose1(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException, SQLException {
 
         System.out.println("I do this");
 
@@ -42,7 +42,7 @@ public class StudentController {
     }
 
     @RequestMapping("/dealSubmitHomework")
-    public String submitHomework(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    public String submitHomework(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException, SQLException {
 
         ArrayList<StudentHomework> list = teacherJDBC.queryHomework();
         String title = list.get(Integer.valueOf(req.getParameter("param"))).getHomeworkTitle();
