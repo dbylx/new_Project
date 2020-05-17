@@ -6,11 +6,17 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="MVCProject_Bean" />
-        <module name="MVCProject" />
-        <module name="db" />
         <module name="HomeworkManage" />
         <module name="ManageSystem" />
+        <module name="springboot-Demo" />
+        <module name="MVCProject_Bean" />
+        <module name="db" />
+      </profile>
+      <profile name="Annotation profile for Project" enabled="true">
+        <sourceOutputDir name="../MVCProject_Bean/target/generated-sources/annotations" />
+        <sourceTestOutputDir name="../MVCProject_Bean/target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="MVCProject" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -18,5 +24,10 @@
       <module name="ManageSystem (1)" target="1.7" />
       <module name="ManageSystem_MVC" target="1.7" />
     </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="springboot-Demo" options="-parameters" />
+    </option>
   </component>
 </project>
