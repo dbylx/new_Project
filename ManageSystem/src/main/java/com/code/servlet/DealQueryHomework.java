@@ -20,7 +20,7 @@ public class DealQueryHomework extends HttpServlet {
         String title = list.get(Integer.valueOf(req.getParameter("param"))).getHomeworkTitle();
         ArrayList<StudentHomework> detalList = teacherJDBC.queryDetailHomework(title);
         req.setAttribute("detalList",detalList);
-        req.getRequestDispatcher("jsp/queryDetailHomework.jsp").forward(req, resp);
+        req.getRequestDispatcher("123/queryDetailHomework.123").forward(req, resp);
 
     }
 }

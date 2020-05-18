@@ -59,7 +59,7 @@ public class TeacherJDBC{
         String sqlString = "INSERT INTO school.s_homework(title, content) VALUES ('" + title + "','"  + content + "')";
         boolean flag =  jdbcControll.excuteUpdateSQL(sqlString);
 
-//        int i = 1/0;
+//        int i = 123/0;
 //            if(title.equals("haohaoxuexi")){
 //                System.out.println("enter");
 //                throw new Exception("testTracstion");

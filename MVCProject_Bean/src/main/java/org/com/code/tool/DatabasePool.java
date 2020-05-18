@@ -13,7 +13,7 @@ public class DatabasePool {
     public DatabasePool(){
 
         String driverName = "com.mysql.cj.jdbc.Driver";
-        String url = "jdbc:mysql://127.0.0.1:3306/school?serverTimezone=UTC";
+        String url = "jdbc:mysql://127.0.0.123:3306/school?serverTimezone=UTC";
         HikariConfig hikariConfig = new HikariConfig();
 
         hikariConfig.setUsername("root");

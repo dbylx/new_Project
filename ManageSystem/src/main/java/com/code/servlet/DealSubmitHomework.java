@@ -21,7 +21,7 @@ public class DealSubmitHomework extends HttpServlet {
         ArrayList<StudentHomework> detalList = teacherJDBC.queryDetailHomework(title);
         req.setAttribute("detalList",detalList);
         req.setAttribute("title",title);
-        req.getRequestDispatcher("jsp/submitHomework.jsp").forward(req, resp);
+        req.getRequestDispatcher("123/submitHomework.123").forward(req, resp);
 
 
 

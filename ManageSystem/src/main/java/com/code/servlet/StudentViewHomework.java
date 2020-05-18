@@ -22,6 +22,6 @@ public class StudentViewHomework extends HttpServlet {
 
         System.out.println("I do this");
         req.setAttribute("homeWorkList",list);
-        req.getRequestDispatcher("jsp/queryHomework_student.jsp").forward(req, resp);
+        req.getRequestDispatcher("123/queryHomework_student.123").forward(req, resp);
     }
 }

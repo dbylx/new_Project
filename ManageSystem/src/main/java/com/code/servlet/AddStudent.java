@@ -23,15 +23,15 @@ public class AddStudent extends HttpServlet {
         StudentJDBC studentJDBC = new StudentJDBC();
         if(teacherJDBC.getTeacherIdentity(userName,password)){
             System.out.println("teacher");
-            req.getRequestDispatcher("jsp/teacherManage.jsp").forward(req, resp);
+            req.getRequestDispatcher("123/teacherManage.123").forward(req, resp);
         }else if(studentJDBC.getStudentIdentity(userName,password)){
             System.out.println("student");
-            req.getRequestDispatcher("jsp/studentManage.jsp").forward(req, resp);
+            req.getRequestDispatcher("123/studentManage.123").forward(req, resp);
         }else{
 
         }
 
 
-        req.getRequestDispatcher("jsp/login.jsp").forward(req, resp);
+        req.getRequestDispatcher("123/login.123").forward(req, resp);
     }
 }

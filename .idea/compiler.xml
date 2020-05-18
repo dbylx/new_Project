@@ -2,28 +2,19 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
       <profile name="Maven default annotation processors profile" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="MVCProject" />
         <module name="HomeworkManage" />
         <module name="ManageSystem" />
         <module name="springboot-Demo" />
         <module name="MVCProject_Bean" />
         <module name="db" />
       </profile>
-      <profile name="Annotation profile for Project" enabled="true">
-        <sourceOutputDir name="../MVCProject_Bean/target/generated-sources/annotations" />
-        <sourceTestOutputDir name="../MVCProject_Bean/target/generated-test-sources/test-annotations" />
-        <outputRelativeToContentRoot value="true" />
-        <module name="MVCProject" />
-      </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="ManageHomework_MVC" target="1.7" />
-      <module name="ManageSystem (1)" target="1.7" />
-      <module name="ManageSystem_MVC" target="1.7" />
-    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">

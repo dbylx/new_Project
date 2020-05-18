@@ -20,6 +20,6 @@ public class TeacherChoose2 extends HttpServlet {
         ArrayList<StudentHomework> list = teacherJDBC.queryHomework();
 
         req.setAttribute("homeWorkList",list);
-        req.getRequestDispatcher("jsp/queryHomework.jsp").forward(req, resp);
+        req.getRequestDispatcher("123/queryHomework.123").forward(req, resp);
     }
 }

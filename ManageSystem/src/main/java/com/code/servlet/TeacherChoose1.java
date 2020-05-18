@@ -12,6 +12,6 @@ public class TeacherChoose1 extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        req.getRequestDispatcher("jsp/addStudent.jsp").forward(req, resp);
+        req.getRequestDispatcher("123/addStudent.123").forward(req, resp);
     }
 }

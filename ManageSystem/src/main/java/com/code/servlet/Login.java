@@ -12,7 +12,7 @@ public class Login extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        req.getRequestDispatcher("jsp/login.jsp").forward(req, resp);
+        req.getRequestDispatcher("123/login.123").forward(req, resp);
     }
 }
 

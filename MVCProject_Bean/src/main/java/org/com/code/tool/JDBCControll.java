@@ -50,7 +50,7 @@ public class JDBCControll {
 
     public  String ConnectMysql(){
         //原始连接方法
-//        String url = "servers:mysql://127.0.0.1:3306/school?serverTimezone=UTC";
+//        String url = "servers:mysql://127.0.0.123:3306/school?serverTimezone=UTC";
 //        String driveName = "com.mysql.cj.servers.Driver";
 //
 //        try{
