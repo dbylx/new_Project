@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<title>
+			homework
+		</title>
+
+
+		<script>
+			function sumbitMessage(title) {
+
+				window.location.href="/student/submitHomeworkJump?title="+title+"&username="+username;
+
+
+			}
+		</script>
+		<script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+		<link type ="text/css" rel = "stylesheet" href = "/static/css/design.css">
+		<style type="text/css" >
+			a:link{text-decoration: none;color: white}
+
+			a:active{text-decoration:none}
+
+			a:hover{text-decoration:none;color: white}
+
+			a:visited{text-decoration: none;color: white}
+
+			
+			*{
+				margin: 0;
+				padding: 0;
+
+			}
+			
+			html{
+				margin: 0;
+				padding:0px;
+				height:100%;
+			
+			}
+			body {
+
+				background-size: cover;
+				background-attachment: fixed;
+			}
+		</style>
+		</head>
+	<body>
+	<div id = 'menu'>
+		<ul>
+			<li><a href="" ><p style="font-size:20px;color:rgb(230,230,230);">Student</p></a></li>
+		</ul>
+	</div>
+	<div id = 'centerPanel2'>
+
+			<table id="homeworkListTable" width="90%" class="table">
+
+
+			</table>
+	</div>
+
+	<script>
+
+		var username = ""
+
+		$(function () {
+			var url = decodeURI(window.location.href);
+			// alert(url)
+			var argsIndex = url .split("?usernameCookie=");
+			var arg = argsIndex[1];
+			username = arg
+			// alert(username)
+			$.ajax({
+				url: "http://localhost:8080/api//homeworkList",
+				type:"get",
+
+				success:function (homeworksdata) {
+
+
+					var tabletab = $("<caption>\n" +
+							"\t\t\t\t\t<h2>作业</h2><br>\n" +
+							"\t\t\t\t</caption>\n" +
+							"\t\t\t\t<thead>\n" +
+							"\t\t\t\t\t<tr>\n" +
+							"\t\t\t\t\t\t<th>作业标题</th>\n" +
+							"\t\t\t\t\t\t<th>作业创建时间</th>\n" +
+							"\t\t\t\t\t\t<th>作业内容</th>\n" +
+							"\t\t\t\t\t\t<th>详细信息</th>\n" +
+							"\t\t\t\t\t</tr>\n" +
+							"\t\t\t\t</thead>")
+					$(tabletab).appendTo("#homeworkListTable")
+
+
+					var homeworklist = homeworksdata.data
+					for(var i = 0;i<homeworklist.length;i++){
+						addItem(homeworklist[i].title,homeworklist[i].content,homeworklist[i].create_time)
+					}
+
+				},
+				error:function (xhr,errorText,errorType) {
+					alert('错误');	//自定义错误
+					alert(errorText + ':' + errorType);
+				},
+
+				// crossDomain: true,
+				// dataType: 'jsonp'
+			})
+
+		});
+
+		function addItem(title,content,creat_time) {
+			var tabcontent = $("<tr>\n" +
+					"\t\t\t\t\t<td>"+title+"</td>\n" +
+					"\t\t\t\t\t<td>"+content+"</td>\n" +
+					"\t\t\t\t\t<td>"+creat_time+"</td>\n" +
+					"\t\t\t\t\t<td><button value=\"提交作业\" onclick=\"sumbitMessage(\'"+title+"\')\">提交作业</button>\n" +
+					"\t\t\t\t\t</td>\n" +
+					"\t\t\t\t</tr>")
+			$(tabcontent).appendTo("#homeworkListTable")
+
+		}
+
+
+	</script>
+
+
+
+
+	</body>
+
+</html>

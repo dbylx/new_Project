@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.demo.db.mapper.StudentMapper">
+
+    <resultMap type="Student" id="StudentData">
+        <id property="username" column="username" />
+        <result property="name" column="name" />
+        <result property="password" column="password" />
+    </resultMap>
+
+    <select id="selectAll" resultMap="StudentData">
+        SELECT * FROM s_student
+    </select>
+
+    <select id="SeletOneStudent" resultMap="StudentData">
+        SELECT * FROM s_student WHERE username = #{username}
+    </select>
+<!--    @Insert("{insert into s_student(name,username,password) values (#{name},#{username},#{password})}")-->
+    <insert id="InsertStudent" >
+        INSERT INTO s_student(name,username,password) VALUES (#{name},#{username},#{password})
+    </insert>
+
+
+
+<!--返回多对象-->
+<!--    <select id="listUserInfo" resultMap="userData">-->
+<!--        select * from t_user-->
+<!--    </select>-->
+
+</mapper>

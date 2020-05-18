@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html>
+
+	<head>
+		<title>
+			teacher
+		</title>
+		<script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+		<link type ="text/css" rel = "stylesheet" href = "/static/css/design.css">
+		<style type="text/css" >
+			a:link{text-decoration: none;color: white}
+
+			a:active{text-decoration:none}
+
+			a:hover{text-decoration:none;color: white}
+
+			a:visited{text-decoration: none;color: white}
+
+			
+			*{
+				margin: 0;
+				padding: 0;
+
+			}
+			
+			html{
+				margin: 0;
+				padding:0px;
+				height:100%;
+			
+			}
+			body {
+
+				background-size: cover;
+				background-attachment: fixed;
+			}
+
+			button {
+				-moz-user-select: none;
+				background-color: #F5F5F5;
+				border: 1px solid rgba(0, 0, 0, 0.1);
+				border-radius: 2px 2px 2px 2px;
+				color: #ffffff;
+				cursor: default;
+				font-family: arial,sans-serif;
+				font-size:1.2em;
+				font-weight: bold;
+				height: 50px;
+				line-height: 21px;
+				background-color:rgb(0,130,255);
+				min-width: 300px;
+				padding: 0 0px;
+				text-align: center;
+			}
+			button:hover {
+				background-color:rgb(0,75,255);
+				color: #ffffff;
+
+				border: 1px solid #C6C6C6;
+				box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+
+			}
+			button:focus {
+				border: 1px solid #4D90FE;
+				outline: medium none;
+			}
+
+		</style>
+
+		</head>
+	<body>
+		
+
+			
+	<div id = 'menu'>
+
+		
+		
+		<ul>
+
+			<li><a href="" ><p style="font-size:20px;color:rgb(230,230,230);">学生</p></a></li>
+
+
+			
+		</ul>
+	</div>
+	<div id = 'centerPanel'>
+		<div class = 'input_control'>
+			<button onclick="sumbitMessage()" value="查看作业">查看作业</button>
+		</div>
+		<br>
+
+	</div>
+
+
+
+<script>
+	var username="";
+	function sumbitMessage() {
+		alert(username)
+		window.location.href="/student/viewHomework?usernameCookie="+username;
+	}
+
+	function getCookie(name)
+	{
+		var arr,reg=new RegExp("(^| )"+name+"=([^;]*)(;|$)");
+		if(arr=document.cookie.match(reg))
+			return unescape(arr[2]);
+		else
+			return null;
+	}
+	$(function () {
+		username = getCookie("username")
+		alert(username)
+	})
+
+</script>
+		
+		
+		
+		
+	
+	</body>
+		
+	
+	
+</html>

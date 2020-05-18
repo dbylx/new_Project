@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.demo.db.mapper.StudentHomeworkMapper">
+    <resultMap type="StudentHomework" id="StudentHomeworkData">
+        <id property="id" column="id" />
+        <result property="student_username" column="student_username" />
+        <result property="homework_title" column="homework_title" />
+        <result property="homework_content" column="homework_content" />
+        <result property="create_time" column="create_time" />
+    </resultMap>
+
+    <select id="SelectAllStudentHomeworkBytitle" resultMap="StudentHomeworkData">
+        SELECT * FROM s_student_homework
+        where homework_title = #{homework_title}
+    </select>
+
+    <insert id="InsertStudentHomework">
+        INSERT INTO s_student_homework(STUDENT_USERNAME, HOMEWORK_TITLE, HOMEWORK_CONTENT) VALUES (#{username},#{title},#{content})
+    </insert>
+
+</mapper>
+    <!--返回多对象-->
+    <!--    <select id="listUserInfo" resultMap="userData">-->
+    <!--        select * from t_user-->
+    <!--    </select>-->
+

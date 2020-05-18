@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns="http://www.w3.org/1999/html">
+
+<head>
+	<title>
+		练习二
+	</title>
+	<script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+	<link type ="text/css" rel = "stylesheet" href = "/static/css/design.css">
+	<style type="text/css" >
+		a:link{text-decoration: none;color: white}
+
+		a:active{text-decoration:none}
+
+		a:hover{text-decoration:none;color: white}
+
+		a:visited{text-decoration: none;color: white}
+
+
+		*{
+			margin: 0;
+			padding: 0;
+
+		}
+
+		html{
+			margin: 0;
+			padding:0px;
+			height:100%;
+
+		}
+		body {
+
+			background-size: cover;
+			background-attachment: fixed;
+		}
+		button {
+			-moz-user-select: none;
+			background-color: #F5F5F5;
+			border: 1px solid rgba(0, 0, 0, 0.1);
+			border-radius: 2px 2px 2px 2px;
+			color: #ffffff;
+			cursor: default;
+			font-family: arial,sans-serif;
+			font-size:1.2em;
+			font-weight: bold;
+			height: 50px;
+			line-height: 21px;
+			background-color:rgb(0,130,255);
+			min-width: 300px;
+			padding: 0 0px;
+			text-align: center;
+		}
+		button:hover {
+			background-color:rgb(0,75,255);
+			color: #ffffff;
+
+			border: 1px solid #C6C6C6;
+			box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+
+		}
+		button:focus {
+			border: 1px solid #4D90FE;
+			outline: medium none;
+		}
+
+
+
+	</style>
+
+</head>
+<body>
+
+
+
+<div id = 'menu'>
+
+
+
+	<ul>
+
+		<li><a href="" ><p style="font-size:20px;color:rgb(230,230,230);">teacher</p></a></li>
+
+
+
+	</ul>
+</div>
+<div id = 'centerPanel2'>
+		<div class = 'input_control2'>
+			<input type="text" id="title" placeholder="请输入作业标题"/>
+		</div>
+
+		<div class = 'input_control3'>
+			<textarea cols="15" rows="20" placeholder="请输入作业内容" id = "content"></textarea>
+		</div>
+		<div class = 'input_control2'>
+			<button onclick="addHomework()">添加作业</button>
+		</div>
+</div>
+
+<script>
+	function addHomework() {
+		$.ajax({
+			url:"/teacher/addHomework",
+			data:{"title":$("#title").val(),"content":$("#content").val()},
+			success(data){
+				if(data.flag){
+					alert("插入成功");
+				}else{
+					alert("插入失败");
+				}
+			},
+		});
+
+	}
+
+
+
+
+
+</script>
+
+
+
+
+</body>
+
+
+
+</html>
