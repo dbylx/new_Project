@@ -11,8 +11,8 @@ public interface StudentMapper {
     List<Student> selectAll();
 
     Student SeletOneStudent(String username);
-
-    int InsertStudent(@Param("name") String name, @Param("username") String username, @Param("password") String password);
+    void deleteStudent(String username);
+    void InsertStudent(@Param("name") String name, @Param("username") String username, @Param("password") String password);
 
 
 }

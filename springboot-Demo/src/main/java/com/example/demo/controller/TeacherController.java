@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import com.example.demo.core.response.DataResponse;
 import com.example.demo.core.response.ListResponse;
+import com.example.demo.db.model.Student;
 import com.example.demo.db.model.StudentHomework;
 import com.example.demo.db.server.HomeworkServer;
 import com.example.demo.db.server.StudentHomeworkServer;
@@ -38,6 +39,15 @@ public class TeacherController {
 //        boolean flag = studentServer.addStudent(name,username,password);
         return "addStudent";
     }
+
+    @RequestMapping("/deleteStudentJump")
+    public String deleteStudentJump(){
+//        System.out.println(username);
+//        boolean flag = studentServer.addStudent(name,username,password);
+        return "deleteStudent";
+    }
+
+
 
     @RequestMapping("/addHomeworkOption")
     public String addHomeworkOption(){
@@ -79,6 +89,36 @@ public class TeacherController {
         return "queryStudentSumbitHomework";
     }
 
+    @RequestMapping("/reviewHomework")
+    public String reviewHomework(){
+
+        return "reviewHomework";
+    }
+
+    @ResponseBody
+    @RequestMapping("/dealReviewHomework")
+    public DataResponse dealReviewHomework(StudentHomework studentHomework){
+        System.out.println(studentHomework.toString());
+        boolean flag = studentHomeworkServer.UpdateReview(studentHomework);
+
+
+        DataResponse dataResponse = new DataResponse();
+        dataResponse.setFlag(true);
+        return dataResponse;
+    }
+
+
+    @ResponseBody
+    @RequestMapping("/deleteStudent")
+    public DataResponse deleteStudent(String username){
+        System.out.println(username);
+        boolean flag = studentServer.deleteStudent(username);
+        DataResponse dataResponse = new DataResponse();
+        dataResponse.setFlag(flag);
+        return dataResponse;
+    }
+
+
 
     @RequestMapping("/queryOneHomeworkSumbit")
     @ResponseBody
@@ -88,5 +128,16 @@ public class TeacherController {
         reList.setData(list);
         return reList;
     }
+
+    @RequestMapping("/selectAll")
+    @ResponseBody
+    public ListResponse<Student> selectAll(String title){
+        List<Student> list = studentServer.selectAll();
+        ListResponse<Student> reList = new ListResponse<>();
+        reList.setData(list);
+        return reList;
+    }
+
+
 
 }

@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>
+		练习二
+	</title>
+	<script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+	<link type ="text/css" rel = "stylesheet" href = "/static/css/design.css">
+	<style type="text/css" >
+		a:link{text-decoration: none;color: white}
+
+		a:active{text-decoration:none}
+
+		a:hover{text-decoration:none;color: white}
+
+		a:visited{text-decoration: none;color: white}
+
+
+		*{
+			margin: 0;
+			padding: 0;
+
+		}
+
+		html{
+			margin: 0;
+			padding:0px;
+			height:100%;
+
+		}
+		body {
+
+			background-size: cover;
+			background-attachment: fixed;
+		}
+
+		button {
+			-moz-user-select: none;
+			background-color: #F5F5F5;
+			border: 1px solid rgba(0, 0, 0, 0.1);
+			border-radius: 2px 2px 2px 2px;
+			color: #ffffff;
+			cursor: default;
+			font-family: arial,sans-serif;
+			font-size:1.2em;
+			font-weight: bold;
+			height: 50px;
+			line-height: 21px;
+			background-color:rgb(0,130,255);
+			min-width: 300px;
+			padding: 0 0px;
+			text-align: center;
+		}
+		button:hover {
+			background-color:rgb(0,75,255);
+			color: #ffffff;
+
+			border: 1px solid #C6C6C6;
+			box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+
+		}
+		button:focus {
+			border: 1px solid #4D90FE;
+			outline: medium none;
+		}
+
+
+
+	</style>
+
+</head>
+<body>
+
+
+
+<div id = 'menu'>
+
+
+
+	<ul>
+
+		<li><a href="" ><p style="font-size:20px;color:rgb(230,230,230);">评阅作业</p></a></li>
+
+
+
+	</ul>
+</div>
+<div id = 'centerPanel2'>
+		<div class = 'input_control2'>
+			<h2>学生姓名</h2>
+			<input type="text" id="s_name" name="title" value="<%=title%>"  disabled="true"/>
+		</div>
+		<div class = 'input_control2'>
+			<h2>作业标题</h2>
+			<input type="text" id="title" name="title" value="<%=title%>"  disabled="true"/>
+		</div>
+
+		<div class = 'input_control3'>
+			<h2>作业内容</h2>
+			<textarea cols="15" rows="15" placeholder="请输入作业内容" id = "content" disabled="true"></textarea>
+		</div>
+		<br/><br/>
+		<div class = 'input_control3'>
+			<h2>作业评语</h2>
+			<textarea cols="15" rows="15" placeholder="请输入评语" id = "comment" ></textarea>
+		</div>
+		<br/>
+		<div class = 'input_control2'>
+			<h2>作业分数</h2>
+			<input type="text" id="grade" name="title" placeholder="请评阅分数"   />
+		</div>
+
+		<br/>
+
+		<div class = 'input_control2'>
+			<button onclick="sumbitHomework()">提交</button>
+		</div>
+</div>
+
+<script>
+	var username = "";
+	$(function () {
+		// var url = decodeURI(window.location.href);
+		var searchParams = new URLSearchParams(window.location.search);
+
+		$("#title").val(searchParams.get('title'));
+		$("#content").val(searchParams.get('content'));
+		username = searchParams.get('username');
+		$("#s_name").val(searchParams.get('username'));
+		// alert(username)
+
+
+
+		// alert(username);
+		// alert($("#title").val());
+		// alert($("#content").val());
+
+	})
+	//
+	//
+	function sumbitHomework() {
+		urls = "/teacher/dealReviewHomework",
+		$.ajax({
+			url:urls,
+			data:{"student_username":username,"homework_title":$("#title").val(),"comment":$("#comment").val(),"grade":$("#grade").val()},
+			success(data){
+				if(data.flag){
+					alert("批阅成功");
+				}else{
+					alert("批阅失败");
+				}
+			},
+		});
+
+	}
+
+
+
+</script>
+
+
+
+
+
+
+
+
+</body>
+
+
+
+</html>

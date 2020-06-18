@@ -2,6 +2,8 @@ package com.example.demo.controller;
 
 
 import com.example.demo.core.response.DataResponse;
+import com.example.demo.core.response.ListResponse;
+import com.example.demo.db.model.StudentHomework;
 import com.example.demo.db.server.HomeworkServer;
 import com.example.demo.db.server.StudentHomeworkServer;
 import com.example.demo.db.server.StudentServer;
@@ -11,6 +13,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/student")
@@ -29,15 +33,40 @@ public class StudentController {
         this.homeworkServer = homeworkServer;
     }
 
+    @RequestMapping("/studentReviewHomework")
+    public String reviewHomework(){
+
+        return "studentReviewHomework";
+    }
+
+    @RequestMapping("/goodHomeworkDetail")
+    public String goodHomeworkDetail(){
+
+        return "goodHomeworkDetail";
+    }
+
+
+
     @RequestMapping("/viewHomework")
     public String viewHomework(){
         return "studentQueryHomework";
+    }
+
+    @RequestMapping("/viewMyHomework")
+    public String viewMyHomework(){
+        return "queryMyHomework";
     }
 
     @RequestMapping("/submitHomeworkJump")
     public String submitHomeworkJump(){
         return "submitHomework";
     }
+
+    @RequestMapping("/viewGoodHomework")
+    public String viewGoodHomeworkJump(){
+        return "viewGoodHomework";
+    }
+
 
     @RequestMapping("/submitHomework")
     @ResponseBody
@@ -48,6 +77,45 @@ public class StudentController {
         boolean flag = studentHomeworkServer.InsertStudentHomework(username, title, content);
         DataResponse dataResponse = new DataResponse();
         dataResponse.setFlag(flag);
+        return dataResponse;
+    }
+
+    @ResponseBody
+    @RequestMapping("/queryMyHomeworkSumbit")
+    public ListResponse<StudentHomework> queryMyHomework(String username) {
+      ListResponse<StudentHomework> listResponse = new ListResponse<>();
+      listResponse.setData(studentHomeworkServer.SelectAllStudentHomeworkByUsername(username));
+      return listResponse;
+    }
+
+
+
+    @ResponseBody
+    @RequestMapping("/queryGoodHomeworkSumbit")
+    public ListResponse<StudentHomework> queryGoodHomeworkSumbit() {
+        ListResponse<StudentHomework> listResponse = new ListResponse<>();
+        listResponse.setData(studentHomeworkServer.SelectAllStudentHomeworkByGood());
+        return listResponse;
+    }
+
+
+
+
+    @ResponseBody
+    @RequestMapping("/updateHomework")
+    public DataResponse updateHomework(StudentHomework studentHomework){
+        System.out.println(studentHomework.toString());
+        DataResponse dataResponse = new DataResponse();
+        List<StudentHomework> list = studentHomeworkServer.SelectAllStudentHomeworkByUsernameTitle(studentHomework.getHomework_title(),studentHomework.getStudent_username());
+        if(list.get(0).getGrade()!=-1){
+            dataResponse.setFlag(false);
+            return dataResponse;
+        }
+        boolean flag = studentHomeworkServer.UpdateHomework(studentHomework);
+
+
+
+        dataResponse.setFlag(true);
         return dataResponse;
     }
 

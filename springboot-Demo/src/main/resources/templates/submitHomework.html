@@ -81,7 +81,7 @@
 
 	<ul>
 
-		<li><a href="" ><p style="font-size:20px;color:rgb(230,230,230);">Student</p></a></li>
+		<li><a href="" ><p style="font-size:20px;color:rgb(230,230,230);">提交作业</p></a></li>
 
 
 
@@ -115,9 +115,9 @@
 
 
 
-		alert(username);
-		alert($("#title").val());
-		alert($("#content").val());
+		// alert(username);
+		// alert($("#title").val());
+		// alert($("#content").val());
 
 	})
 	//
@@ -129,9 +129,9 @@
 			data:{"username":username,"title":$("#title").val(),"content":$("#content").val()},
 			success(data){
 				if(data.flag){
-					alert("插入成功");
+					alert("提交成功");
 				}else{
-					alert("插入失败");
+					alert("作业已提交过,不可重复提交,请去更改界面更新");
 				}
 			},
 		});

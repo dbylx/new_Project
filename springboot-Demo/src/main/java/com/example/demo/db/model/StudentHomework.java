@@ -22,6 +22,8 @@ public class StudentHomework {
     String homework_title;
     String student_username;
     String homework_content;
+    String comment;
     String create_time;
+    float grade;
 
 }

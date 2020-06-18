@@ -20,8 +20,9 @@ public class Student {
 
 
     @Id
-    private String username;
-    private String name;
-    private String password;
+    public String username;
+    public String name;
+    public String password;
+    public String create_time;
 
 }

@@ -11,6 +11,12 @@
 	<script>
 	</script>
 	<script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+	<script>
+		function sumbitMessage(title,content,username) {
+			window.location.href="/teacher/reviewHomework?title="+title+"&content="+content+"&username="+username;
+		}
+
+	</script>
 	<link type ="text/css" rel = "stylesheet" href = "/static/css/design.css">
 	<style type="text/css" >
 		a:link{text-decoration: none;color: white}
@@ -54,7 +60,7 @@
 
 	<ul>
 
-		<li><a href="" ><p style="font-size:20px;color:rgb(230,230,230);">teacher</p></a></li>
+		<li><a href="" ><p style="font-size:15px;color:rgb(230,230,230);">提交作业统计</p></a></li>
 
 
 
@@ -103,7 +109,10 @@
 							"\t\t\t\t\t\t<th>学生用户名</th>\n" +
 							"\t\t\t\t\t\t<th>作业题目</th>\n" +
 							"\t\t\t\t\t\t<th>作业内容</th>\n" +
+							"\t\t\t\t\t\t<th>分数</th>\n" +
+							"\t\t\t\t\t\t<th>评语</th>\n" +
 							"\t\t\t\t\t\t<th>作业创建时间</th>\n" +
+							"\t\t\t\t\t\t<th>批阅</th>\n" +
 							"\n" +
 							"\t\t\t\t\t</tr>\n" +
 							"\t\t\t\t</thead>")
@@ -112,7 +121,7 @@
 
 					var homeworklist = homeworksdata.data
 					for(var i = 0;i<homeworklist.length;i++){
-						addItem(homeworklist[i].student_username,homeworklist[i].homework_title,homeworklist[i].homework_content,homeworklist[i].create_time)
+						addItem(homeworklist[i].student_username,homeworklist[i].homework_title,homeworklist[i].homework_content,homeworklist[i].grade,homeworklist[i].comment,homeworklist[i].create_time)
 					}
 
 				},
@@ -127,11 +136,14 @@
 
 		});
 
-		function addItem(username,title,content,creat_time) {
+		function addItem(username,title,content,grade,comment,creat_time) {
 			var tabcontent = $("<tr>><td >"+username+"</td>\n" +
 					"\t\t\t\t\t<td >"+title+"</td>\n" +
 					"\t\t\t\t\t<td>"+content+"</td>\n" +
-					"\t\t\t\t\t<td>"+creat_time+"</td></tr")
+					"\t\t\t\t\t<td>"+grade+"</td>\n" +
+					"\t\t\t\t\t<td>"+comment+"</td>\n" +
+					"\t\t\t\t\t<td>"+creat_time+"</td>\n"+
+					"\t\t\t\t\t<td><button value='批阅' onclick=\"sumbitMessage(\'" + title + "\',\'" + content + "\',\'" + username + "\')\">批阅</button>\n</tr>")
 			$(tabcontent).appendTo("#homeworkListTable")
 
 		}

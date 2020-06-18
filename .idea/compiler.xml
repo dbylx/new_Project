@@ -15,9 +15,15 @@
         <module name="db" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="cloud_demo" target="1.8" />
+      <module name="democloud" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="cloud_demo" options="-parameters" />
+      <module name="democloud" options="-parameters" />
       <module name="springboot-Demo" options="-parameters" />
     </option>
   </component>

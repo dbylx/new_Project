@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>
+		作业情况统计
+	</title>
+
+	<script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+	<script>
+		function sumbitMessage(username) {
+			urls = "/teacher/deleteStudent",
+					$.ajax({
+						url:urls,
+						data:{"username":username},
+						success(data){
+							if(data.flag){
+								alert("消除成功，消除学生和该学生的所有作业");
+							}else{
+								alert("删除失败");
+							}
+						},
+					});
+
+
+		}
+	</script>
+
+	<link type ="text/css" rel = "stylesheet" href = "/static/css/design.css">
+	<style type="text/css" >
+		a:link{text-decoration: none;color: white}
+
+		a:active{text-decoration:none}
+
+		a:hover{text-decoration:none;color: white}
+
+		a:visited{text-decoration: none;color: white}
+
+
+		*{
+			margin: 0;
+			padding: 0;
+
+		}
+
+		html{
+			margin: 0;
+			padding:0px;
+			height:100%;
+
+		}
+	</style>
+</head>
+<body>
+
+
+
+<div id = 'menu'>
+	<ul>
+		<li><a href="" ><p style="font-size:13px;color:rgb(230,230,230);">消除学生</p></a></li>
+
+	</ul>
+</div>
+<div id = 'centerPanel2'>
+	<table id="homeworkListTable" width=90% class="table">
+	</table>
+</div>
+<script>
+	$(function () {
+		$.ajax({
+			url: "http://127.0.0.1:8080/teacher/selectAll",
+			type:"get",
+
+			success:function (homeworksdata) {
+
+
+				var tabletab = $(
+						"\t\t\t\t<caption>\n" +
+						"\t\t\t\t\t<h2>当前学生信息</h2><br>\n" +
+						"\t\t\t\t</caption>\n" +
+						"\t\t\t\t<thead>\n" +
+						"\t\t\t\t\t<tr>\n" +
+						"\t\t\t\t\t\t<th>学生姓名</th>\n" +
+						"\t\t\t\t\t\t<th>学生用户名</th>\n" +
+						"\t\t\t\t\t\t<th>学生密码</th>\n" +
+						"\t\t\t\t\t\t<th>创建日期</th>\n" +
+						"\t\t\t\t\t\t<th>操作</th>\n" +
+						"\t\t\t\t\t</tr>\n" +
+						"\t\t\t\t</thead>\n")
+				$(tabletab).appendTo("#homeworkListTable")
+
+
+				var studentList = homeworksdata.data
+				for(var i = 0;i<studentList.length;i++){
+					addOneItem(studentList[i].name,studentList[i].username,studentList[i].password,studentList[i].create_time)
+				}
+
+			},
+			error:function (xhr,errorText,errorType) {
+				alert('错误');	//自定义错误
+				alert(errorText + ':' + errorType);
+			},
+
+			// crossDomain: true,
+			// dataType: 'jsonp'
+		})
+
+	});
+
+
+	function addOneItem(name,username,password,time){
+		var homeworkList = $("<tr>\n" +
+				"\t\t\t\t\t<td id = \"title\">"+name+"</td>\n" +
+				"\t\t\t\t\t<td id=\"time\">"+username+"</td>\n" +
+				"\t\t\t\t\t<td id=\"content\">"+password+"</td>\n" +
+				"\t\t\t\t\t<td id=\"content\">"+time+"</td>\n" +
+				"\t\t\t\t\t<td><button value='消除学生' onclick=\"sumbitMessage(\'" + username + "\')\">删除学生</button>\n" +
+				"\t\t\t\t\t</td>\n" +
+				"\t\t\t\t</tr>")
+		var homeworkList= $(homeworkList).appendTo("#homeworkListTable")
+
+	}
+</script>
+</body>
+</html>

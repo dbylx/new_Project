@@ -23,16 +23,24 @@ public class TeacherServer {
             System.out.println("kong");
         }
         try {
-            teacher.getPassword().equals(password);
+            return teacher.getPassword().equals(password);
         }catch (Exception e){
+            return false;
+        }
+    }
+
+
+    public boolean addTeacher(String name,String username,String password){
+        try {
+            teacherMapper.InsertTeacher(name, username, password);
+        }catch (Exception e){
+            e.printStackTrace();
             return false;
         }
 
         return true;
+
     }
-
-
-
 
 
 

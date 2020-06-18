@@ -1,9 +1,6 @@
 package com.example.demo.controller;
 
-import com.example.demo.core.request.LoginRequest;
-import com.example.demo.core.request.StudentHomeworkRequest;
-import com.example.demo.core.request.StudentRequest;
-import com.example.demo.core.request.TeacherRequest;
+import com.example.demo.core.request.*;
 import com.example.demo.core.response.DataResponse;
 import com.example.demo.core.response.ListResponse;
 import com.example.demo.db.model.Homework;
@@ -23,6 +20,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 @Controller
 @RequestMapping("/api")
@@ -64,11 +63,46 @@ public class APIController {
             Cookie cookie = new Cookie("username",loginRequest.getUsername());
             response.addCookie(cookie);
             return "teacherManage";
+//            return "Teacher";
         }
 
 
         return "login";
     }
+
+    @RequestMapping("/register")
+    public String register(){
+        return "register";
+    }
+
+    @RequestMapping("/dealRegister")
+    public String dealRegister(RegisterRequest registerRequest,HttpServletResponse response) {
+        System.out.println(registerRequest.toString());
+        boolean flag = false;
+        if(registerRequest.getDrone().equals("2")){
+            flag = teacherServer.addTeacher(registerRequest.getName(),registerRequest.getUsername(),registerRequest.getPassword());
+        }else if(registerRequest.getDrone().equals("1")){
+            flag = studentServer.addStudent(registerRequest.getName(),registerRequest.getUsername(),registerRequest.getPassword());
+        }
+        response.setContentType("text/html; charset=UTF-8"); //转码
+        PrintWriter out = null;
+        try {
+            out = response.getWriter();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        if(!flag){
+            out.println("<script type='text/javascript'>alert('注册失败!');</script>");
+            return "register";
+        }else{
+            out.println("<script type='text/javascript'>alert('注册成功!');</script>");
+            return "login";
+        }
+
+
+    }
+
+
 
     @RequestMapping("/homeworkList")
     @ResponseBody

@@ -6,4 +6,5 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface TeacherMapper {
     Teacher SeletOneTeacher(String username);
+    void InsertTeacher(String name, String username,String password);
 }

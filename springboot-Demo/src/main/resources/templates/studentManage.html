@@ -3,7 +3,7 @@
 
 	<head>
 		<title>
-			teacher
+			studentManage
 		</title>
 		<script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 		<link type ="text/css" rel = "stylesheet" href = "/static/css/design.css">
@@ -86,8 +86,17 @@
 	</div>
 	<div id = 'centerPanel'>
 		<div class = 'input_control'>
-			<button onclick="sumbitMessage()" value="查看作业">查看作业</button>
+			<button onclick="sumbitMessage()" value="查看作业">查看所有作业</button>
 		</div>
+
+		<div class = 'input_control'>
+			<button onclick="sumbitMessage1()" value="查看作业">查看我提交的作业</button>
+		</div>
+
+		<div class = 'input_control'>
+			<button onclick="sumbitMessage2()" value="查看作业">查看优秀作业</button>
+		</div>
+
 		<br>
 
 	</div>
@@ -97,9 +106,21 @@
 <script>
 	var username="";
 	function sumbitMessage() {
-		alert(username)
+		// alert(username)
 		window.location.href="/student/viewHomework?usernameCookie="+username;
 	}
+
+	function sumbitMessage1() {
+		// alert(username)
+		window.location.href="/student/viewMyHomework?username="+username;
+	}
+
+
+	function sumbitMessage2() {
+		// alert(username)
+		window.location.href="/student/viewGoodHomework";
+	}
+
 
 	function getCookie(name)
 	{
@@ -111,7 +132,7 @@
 	}
 	$(function () {
 		username = getCookie("username")
-		alert(username)
+		// alert(username)
 	})
 
 </script>

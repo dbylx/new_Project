@@ -10,6 +10,8 @@
         <result property="homework_title" column="homework_title" />
         <result property="homework_content" column="homework_content" />
         <result property="create_time" column="create_time" />
+        <result property="comment" column="comment" />
+        <result property="grade" column="grade" />
     </resultMap>
 
     <select id="SelectAllStudentHomeworkBytitle" resultMap="StudentHomeworkData">
@@ -17,9 +19,51 @@
         where homework_title = #{homework_title}
     </select>
 
+    <select id="SelectAllStudentHomeworkByUsername" resultMap="StudentHomeworkData">
+        SELECT * FROM s_student_homework
+        where student_username = #{username}
+    </select>
+
+    <select id="SelectAllStudentHomeworkByUsernameTitle" resultMap="StudentHomeworkData">
+        SELECT * FROM s_student_homework
+        where student_username = #{username}
+        AND homework_title = #{homework_title}
+    </select>
+
+    <select id="SelectAllStudentHomeworkByGood" resultMap="StudentHomeworkData">
+        SELECT * FROM s_student_homework
+        HAVING grade > 95
+    </select>
+
+
+
     <insert id="InsertStudentHomework">
         INSERT INTO s_student_homework(STUDENT_USERNAME, HOMEWORK_TITLE, HOMEWORK_CONTENT) VALUES (#{username},#{title},#{content})
     </insert>
+
+
+    <update id="UpdateReview">
+        UPDATE s_student_homework
+        <trim prefix="set" suffixOverrides=",">
+            <if test="comment!=null">comment=#{comment},</if>
+            <if test="grade!=null">grade=#{grade},</if>
+
+        </trim>
+        WHERE student_username=#{student_username}
+        AND homework_title = #{homework_title}
+    </update>
+
+    <update id="UpdateHomework">
+        UPDATE s_student_homework
+        <trim prefix="set" suffixOverrides=",">
+            <if test="homework_content!=null">homework_content=#{homework_content},</if>
+
+        </trim>
+        WHERE student_username=#{student_username}
+        AND homework_title = #{homework_title}
+    </update>
+
+
 
 </mapper>
     <!--返回多对象-->

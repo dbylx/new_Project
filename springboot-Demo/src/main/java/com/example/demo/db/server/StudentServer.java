@@ -39,5 +39,20 @@ public class StudentServer{
 
     }
 
+    public boolean deleteStudent(String username){
+        try {
+            studentMapper.deleteStudent(username);
+        }catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
+
+        return true;
+
+    }
+
+    public List<Student> selectAll(){
+        return studentMapper.selectAll();
+    }
 
 }

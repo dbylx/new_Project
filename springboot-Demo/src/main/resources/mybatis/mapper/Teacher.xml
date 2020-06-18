@@ -17,6 +17,9 @@
         SELECT * FROM s_teacher where username = #{username}
     </select>
 
+    <insert id="InsertTeacher" >
+        INSERT INTO s_teacher(name,username,password) VALUES (#{name},#{username},#{password})
+    </insert>
 
 </mapper>
         <!--返回多对象-->

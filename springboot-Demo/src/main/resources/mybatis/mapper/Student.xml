@@ -9,6 +9,7 @@
         <id property="username" column="username" />
         <result property="name" column="name" />
         <result property="password" column="password" />
+        <result property="create_time" column="create_time" />
     </resultMap>
 
     <select id="selectAll" resultMap="StudentData">
@@ -23,7 +24,10 @@
         INSERT INTO s_student(name,username,password) VALUES (#{name},#{username},#{password})
     </insert>
 
-
+    <delete id="deleteStudent" parameterType="com.example.demo.db.model.Student">
+        DELETE from s_student
+        WHERE  username = #{username}
+    </delete>
 
 <!--返回多对象-->
 <!--    <select id="listUserInfo" resultMap="userData">-->
