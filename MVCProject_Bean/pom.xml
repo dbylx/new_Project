@@ -180,7 +180,7 @@
         <maven.compiler.target>1.7</maven.compiler.target>
 
         <!--spring 版本号-->
-        <spring.version>5.1.6.RELEASE</spring.version>
+        <spring.version>5.2.5.RELEASE</spring.version>
 
         <!--mybatis 版本号-->
         <mybatis.version>3.2.4</mybatis.version>
